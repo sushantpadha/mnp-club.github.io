@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>About</title>
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+    <style>
+      /* Add equation canvas background */
+      #equationCanvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        pointer-events: none;
+        width: 100%;
+        height: 100vh;
+      }
+
+      #backgroundOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      /* Improve typography and responsiveness */
+      body {
+        font-family: 'Lato', sans-serif;
+        font-size: 16px;
+        line-height: 1.7;
+        background-color: #0e0e0e;
+        color: white;
+        margin: 0;
+        padding: 0;
+      }
+
+      h1, h2, h3, h4, h5 {
+        font-family: 'Playfair Display', serif;
+      }
+
+      #titl {
+        font-size: 3rem;
+        line-height: 1.1;
+      }
+
+      #content a {
+        color: #80d8ff;
+        font-weight: bold;
+      }
+
+      #content a:hover {
+        text-decoration: underline;
+      }
+
+      /* Navbar active link highlight */
+      #nav-top a.active {
+        border-bottom: 2px solid #80d8ff;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="equationCanvas"></canvas>
+    <div id="backgroundOverlay"></div>
+
+    <div id="navbar"></div>
+    <script>
+      document.getElementById('navbar').innerHTML = '<object type="text/html" data="navbar.html" width="1000"></object>';
+    </script>
+
+    <div id="logo">
+      <a id="innerimginside" href="index.html"
+        ><img src="images/mnp-logo.png" id="innerimg"
+      /></a>
+      <img src="images/home_mnp.png" id="topcoverimg" />
+    </div>
+
+    <div id="titlecontent">
+      <div id="titl">About Us</div>
+      <div id="content">
+        <!-- original content -->
+      </div>
+    </div>
+
+    <section style="margin-top: 50px; max-width: 800px; margin-left: auto; margin-right: auto;">
+      <h2 style="text-align: center; font-size: 2rem;">Physics Pendulum Visualization</h2>
+      <div id="pendulum-sketch"></div>
+    </section>
+
+    <hr />
+    <div id="footer">
+      <span>© 2024 Maths And Physics Club.</span>
+    </div>
+    <div id="footer2">
+      <div id="social-icons">
+        <a
+          class="icon"
+          href="https://facebook.com/mnpiitb"
+          title="Maths And Physics Club on Facebook"
+          target="_blank"
+          ><img class="fa" src="images/facebook.png"
+        /></a>
+        <a
+          class="icon"
+          href="https://instagram.com/mnpclub.iitb"
+          title="Maths And Physics Club on Instagram"
+          target="_blank"
+          ><img class="fa" src="images/instagram.png"
+        /></a>
+        <a
+          class="icon"
+          href="https://github.com/mnp-club"
+          title="Maths And Physics Club on Github"
+          target="_blank"
+          ><img class="fa" src="images/github.png"
+        /></a>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.min.js"></script>
+    <script>
+      // Floating equations canvas
+      const canvas = document.getElementById('equationCanvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const equations = ['∫', '∑', 'Γ', 'π', 'α', 'δ', 'eˣ', 'dx', '∂', '√', '∞', 'θ'];
+      const particles = [];
+
+      class Particle {
+        constructor() {
+          this.reset();
+          this.symbol = equations[Math.floor(Math.random() * equations.length)];
+          this.fontSize = 20 + Math.random() * 20;
+        }
+
+        reset() {
+          this.x = Math.random() * canvas.width;
+          this.y = canvas.height + Math.random() * 200;
+          this.speed = 0.3 + Math.random() * 0.7;
+          this.opacity = 0.2 + Math.random() * 0.6;
+        }
+
+        update() {
+          this.y -= this.speed;
+          if (this.y < -50) this.reset();
+        }
+
+        draw() {
+          ctx.font = `${this.fontSize}px serif`;
+          ctx.fillStyle = `rgba(255,255,255,${this.opacity})`;
+          ctx.fillText(this.symbol, this.x, this.y);
+        }
+      }
+
+      for (let i = 0; i < 50; i++) {
+        particles.push(new Particle());
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach((p) => {
+          p.update();
+          p.draw();
+        });
+        requestAnimationFrame(animate);
+      }
+      animate();
+
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+    </script>
+
+    <script>
+      // p5.js sketch for pendulum
+      let angle = Math.PI / 4;
+      let aVelocity = 0;
+      let aAcceleration = 0;
+      let length = 200;
+      let origin;
+      let bob;
+
+      new p5((sketch) => {
+        sketch.setup = () => {
+          const canvas = sketch.createCanvas(600, 300);
+          canvas.parent('pendulum-sketch');
+          origin = sketch.createVector(sketch.width / 2, 0);
+          bob = sketch.createVector();
+        };
+
+        sketch.draw = () => {
+          sketch.background(20);
+          let gravity = 0.4;
+          aAcceleration = (-1 * gravity / length) * Math.sin(angle);
+          aVelocity += aAcceleration;
+          angle += aVelocity;
+          aVelocity *= 0.99;
+
+          bob.set(
+            origin.x + length * Math.sin(angle),
+            origin.y + length * Math.cos(angle)
+          );
+
+          sketch.stroke(255);
+          sketch.line(origin.x, origin.y, bob.x, bob.y);
+          sketch.fill(255);
+          sketch.ellipse(bob.x, bob.y, 40, 40);
+        };
+      });
+    </script>
+  </body>
+</html>

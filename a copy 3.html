@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>About</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans&display=swap" />
+    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+    <style>
+      body {
+        margin: 0;
+        font-family: 'IBM Plex Sans', sans-serif;
+        background-color: #0e0e0e;
+        color: #f0f0f0;
+        text-align: center;
+        overflow-x: hidden;
+      }
+
+      #equationCanvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        pointer-events: none;
+        width: 100%;
+        height: 100vh;
+      }
+
+      #logo {
+        position: relative;
+        margin-top: 30px;
+        z-index: 3;
+        animation: fadeInDown 1s ease forwards;
+      }
+
+      #innerimginside {
+        display: inline-block;
+      }
+
+      #innerimg {
+        height: 120px;
+        width: 120px;
+        border-radius: 50%;
+        border: 3px solid #fff;
+      }
+
+      #navbar {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: -60px;
+        padding-top: 20px;
+        z-index: 2;
+        opacity: 0;
+        animation: fadeInUp 1s ease 1.2s forwards;
+      }
+
+      #black-cont {
+        background-color: #111;
+        padding: 10px 20px;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .topic {
+        color: white;
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-size: 14px;
+        text-decoration: none;
+        padding: 8px 12px;
+        border-radius: 4px;
+        transition: background 0.3s;
+      }
+
+      .topic:hover {
+        background-color: #333;
+      }
+
+      #titlecontent {
+        max-width: 800px;
+        margin: 60px auto;
+        padding: 0 20px;
+      }
+
+      #titl {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 2.75rem;
+        margin-bottom: 1.5rem;
+      }
+
+      #content {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        text-align: center;
+      }
+
+      #footer2 {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 50px;
+        padding: 20px;
+      }
+
+      .social-tile {
+        background: #1e1e1e;
+        padding: 20px;
+        border-radius: 12px;
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease;
+      }
+
+      .social-tile:hover {
+        transform: scale(1.1);
+        background: #333;
+      }
+
+      .social-tile img {
+        width: 40px;
+        height: 40px;
+        filter: invert(1);
+      }
+
+      @keyframes fadeInDown {
+        0% { opacity: 0; transform: translateY(-20px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes fadeInUp {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="equationCanvas"></canvas>
+
+    <div id="logo">
+      <a id="innerimginside" href="index.html">
+        <img src="images/mnp-logo.png" id="innerimg" alt="MnP Logo" />
+      </a>
+    </div>
+
+    <div id="navbar">
+      <div id="black-cont">
+        <a class="topic" href="#about">About</a>
+        <a class="topic" href="#events">Events</a>
+        <a class="topic" href="#team">Team</a>
+        <a class="topic" href="#contact">Contact</a>
+      </div>
+    </div>
+
+    <div id="titlecontent">
+      <div id="titl">About Us</div>
+      <div id="content">
+        The Maths and Physics Club of IIT Bombay, is a community to celebrate the sciences we revere in their purest of forms, undiluted and in all their grandeur. We cater to stimulate your brains with the best intellectual events, quizzes, symposiums, lectures & to keep the streak of curiosity level with knowledge by introducing you to labs in and off the campus with exquisite research work and setting you off to build your own experimental setups, funded by us.<br /><br />
+        The best fodder to develop oneself is a perseverant thought process, our fortnightly group discussion sessions (popularly abbreviated to GDs) and exclusive documentary screenings leave you with ancillary knowledge and questions to let in those science loving bees in your bonnet. And for those dulled by methodical cakewalk problems, we have a purely conceptual flagship quiz event, Bazinga!, followed by our very own Mathematics Olympiad (Mathathon) and Logic General Championship to the delight of connoisseurs of pure reason.<br /><br />
+        All in all, we are a self-sustaining community of intellectuals, students & professors, across ages and departments, who enjoy sharing knowledge through platforms provided by our club​ and if you talk Physics and Maths, there is no better place for you than the Maths and Physics Club, IIT Bombay.<br />
+        <h2 id="vision">Our Vision</h2>
+        MnP envisions itself as a platform to build community of passionate scientists and engineers; as a force to make that miracle happen in the institute. We, as a club, aim to reignite the inquisitiveness for the basic sciences. We aspire to establish a stigma free community within IITB wherein any enthusiast can initiate discussions, organise events without any hesitation. We have come so far from what we started, but there are still miles to go, and many enthusiasts to claim.
+      </div>
+    </div>
+
+    <div id="footer2">
+      <a class="social-tile" href="https://facebook.com/mnpiitb" target="_blank">
+        <img src="images/facebook.png" alt="Facebook" />
+      </a>
+      <a class="social-tile" href="https://instagram.com/mnpclub.iitb" target="_blank">
+        <img src="images/instagram.png" alt="Instagram" />
+      </a>
+      <a class="social-tile" href="https://github.com/mnp-club" target="_blank">
+        <img src="images/github.png" alt="GitHub" />
+      </a>
+    </div>
+
+    <script>
+      // ICONS float animation
+      const canvas = document.getElementById('equationCanvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const iconSources = ['images/math1.png', 'images/math2.jpeg'];
+      const images = [];
+      const particles = [];
+
+      iconSources.forEach((src) => {
+        const img = new Image();
+        img.src = src;
+        images.push(img);
+      });
+
+      class Particle {
+        constructor() {
+          this.reset();
+          this.img = images[Math.floor(Math.random() * images.length)];
+        }
+        reset() {
+          this.x = Math.random() * canvas.width;
+          this.y = canvas.height + Math.random() * 200;
+          this.speed = 0.3 + Math.random() * 0.7;
+          this.size = 15 + Math.random() * 10;
+        }
+        update() {
+          this.y -= this.speed;
+          if (this.y < -50) this.reset();
+        }
+        draw() {
+          if (this.img.complete) ctx.drawImage(this.img, this.x, this.y, this.size, this.size);
+        }
+      }
+
+      for (let i = 0; i < 40; i++) {
+        particles.push(new Particle());
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach((p) => {
+          p.update();
+          p.draw();
+        });
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+    </script>
+  </body>
+</html>
